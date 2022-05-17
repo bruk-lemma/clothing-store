@@ -8,7 +8,7 @@ const MenuItem=({title,imageUrl,size})=>(
     />
     <div className="content">
         <h1 className="title">{title.toUpperCase()}</h1>
-        <span className="subtitle">Shop NOw</span>
+        <span className="subtitle">Shop NOw {size}</span>
     </div>
 </div>
 );
