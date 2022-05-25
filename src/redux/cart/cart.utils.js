@@ -14,4 +14,4 @@ if(existingCartItem){
 return [...cartItems,{...cartItemToAdd,quantity:1}]
 };
 
-export default addItemToCart; 
+export default addItemToCart;  

@@ -4,10 +4,14 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up-page/sign-in-and-sign-up-page.component';
+import CheckOutPage from './pages/checkout/checkout.component';
 import { auth,createUserProfileDocument } from './firebase/firebase.utils';
 import React from 'react';
 import { connect } from 'react-redux';
 import {setCurrentUser} from './redux/user/user.actions'
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+ 
 
 class App extends React.Component{
 
@@ -29,6 +33,8 @@ class App extends React.Component{
      //console.log(this.state)
      // console.log(user ) ; 
      }
+     //this is where i was stranded i did it like "setCurrentUser({userAuth})"";
+     //but it is  supposed to be like "setCurrentUser(userAuth);"" with nobraces in the userAuth;
     setCurrentUser(userAuth);
     }); 
     
@@ -44,6 +50,7 @@ componentWillUnmount(){
       <Switch>
       <Route  exact path='/' component={HomePage}/>
       <Route  path='/shop'   component={ShopPage}/> 
+      <Route  exact path='/checkout' component={CheckOutPage}/> 
       <Route  exact path='/signin' 
       render={()=>this.props.currentUser || (this.props.currentUser!==null) ? (<Redirect to='/'/>) : (<SignInAndSignUpPage/>)}/>
       </Switch>
@@ -52,8 +59,8 @@ componentWillUnmount(){
   }
 }
 
-const mapSateToProps=({user})=>({
-  currentUser:user.currentUser
+const mapSateToProps=createStructuredSelector({
+  currentUser:selectCurrentUser
 });
 
 const mapDispatchToProps=dispatch=>({
