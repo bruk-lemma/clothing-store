@@ -17,6 +17,7 @@ const CollectionPage=({collection})=>{
 </div>
 </div>
 )};
+
 const mapStateToProps=(state,ownProps)=>({
     collection:selectCollection(ownProps.match.params.collectionId)(state)
 })
